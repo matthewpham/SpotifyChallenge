@@ -1,0 +1,50 @@
+body {
+  padding:10px;
+  background-color: #C1FFC1;
+}
+.img {
+  margin-bottom:20px;
+  border:5px solid white;
+  outline:1px solid #d3d3d3;
+  padding:0; 
+  text-align:center;
+  box-sizing:border-box;
+}
+
+img {
+  max-height:100%;
+  max-width:100%;
+  cursor:pointer;
+}
+.container-fixed {
+  width:90%;
+  margin-left:5%;
+  text-align:center;
+}
+
+.playing {
+  border:5px solid lightblue;
+}
+
+.navbar-default {
+  margin: auto;
+  width: 60%;
+  background-color: #81b71a;
+  border-color: #a2e229;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(96,122,34,1);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(96,122,34,1);
+  box-shadow: 3px 3px 5px 0px rgba(96,122,34,1);
+}
+
+div label, input, .input-group-btn {
+  color: #f1f7f8;
+  vertical-align: bottom;
+}
+
+form {
+  text-align: center;
+}
+
+.help-block {
+  color: darkgreen;
+}
