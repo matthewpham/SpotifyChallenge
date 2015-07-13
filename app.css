@@ -41,10 +41,18 @@ div label, input, .input-group-btn {
   vertical-align: bottom;
 }
 
+.radio label {
+  color: darkgreen;
+}
+
 form {
   text-align: center;
 }
 
 .help-block {
   color: darkgreen;
+}
+
+.song-info {
+  font-style: italic;
 }

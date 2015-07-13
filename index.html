@@ -18,7 +18,7 @@
           <label>Spotify search: </label>
           <input type="text" name="search" ng-minlength=3 placeholder="Search" ng-model="track" class="form-control" required></input>
           <div class="input-group-btn">
-            <button ng-disabled="songForm.search.$invalid" class="btn btn-default" ng-click="getSongs()" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            <button ng-disabled="songForm.search.$invalid" class="btn btn-default" ng-click="get()" type="submit"><span class="glyphicon glyphicon-search"></span></button>
           </div> 
         </div>
         <p class="help-block" ng-show="songForm.search.$error.minlength">Enter 3+ characters</p>
@@ -26,8 +26,37 @@
     </div>
     <div>
       <div class="container-fixed">
+        <p ng-show="tracks.length==0" class="help-block">No results</p>
         <p ng-show="tracks.length>0" class="help-block">Click to sample</p>
-        <div ng-class="track.preview_url == currentSong ? 'playing' : ''"  ng-repeat="track in tracks" class="col-xs-4 img"><img ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img></div>
+        <div class="form-group" ng-show="tracks.length>0">
+          <div class="radio">
+            <p> Sort By: </p>
+            <label>
+              <input type="radio" name="sort" ng-model="order" value="" ng-click="setOrder('')" checked="checked">Relevance</input>
+            </label>
+            <label>
+              <input type="radio" name="sort" ng-model="order" value="popularity" ng-click="setOrder('popularity')">Popularity</input>
+            </label>
+            <label>
+              <input type="radio" name="sort" ng-model="order" value="name" ng-click="setOrder('name')">Track</input>
+            </label>
+            <label>
+              <input type="radio" name="sort" ng-model="order" value="artists[0].name" ng-click="setOrder('artists[0].name')">Artist</input>
+            </label>
+            <label>
+              <input type="radio" name="sort" ng-model="order" value="album.name" ng-click="setOrder('album.name')">Album</input>
+            </label>
+          </div>
+        </div>
+        <div ng-show="audioObject.play != undefined" class="container-fixed">
+          <p class="song-info">{{currentSong.name}}</p>
+          <p class="song-info">{{currentSong.artists[0].name}}</p>
+          <p class="song-info">{{currentSong.album.name}}</p>
+          <!--<p>Related artists: {{artists[0].name}}, {{artists[1].name}}, {{artists[2].name}}, {{artists[3].name}}, {{artists[4].name}}</p>-->
+        </div>
+        <div ng-class="track == currentSong ? 'playing' : ''"  ng-repeat="track in tracks | orderBy: order" class="col-xs-4 img">
+          <img ng-click="play(track)" title="{{track.name}}" ng-src="{{track.album.images[1].url}}"></img>
+        </div>
       </div>
     </div>
   </div>
